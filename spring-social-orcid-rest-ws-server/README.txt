@@ -1,3 +1,15 @@
+This is an example RESTful web service that demonstrates how to use Spring Social ORCID to enable users 
+to sign into a web application via ORCID.
+
+Hopefully, with this example, you'll understand how to integrate Spring Social into your web service. 
+And users can sign into their web application via your web service through ORCID.
+
+We have also provided a client written in JavaScript (https://github.com/EuropePMC/spring-social-orcid-rest-ws-example/tree/master/spring-social-orcid-rest-ws-client)
+that uses this web service. 
+
+Have fun, and all the best!
+Europe PMC development team
+
 ------------------------------------
 Prerequisite:
 
@@ -21,7 +33,7 @@ orcid.clientId=xxxxxxxxxxxxxxxxxxx
 orcid.clientSecret=xxxxxxxxxxxxxxxxxxx
 
 orcid.frontendUrl=https://orcid.org/
-orcid.messageSchemaVersion=1.2
+orcid.messageSchemaVersion=2.0
 orcid.apiUrl=https://api.orcid.org/v${orcid.messageSchemaVersion}/
 orcid.pubApiUrl=https://pub.orcid.org/v${orcid.messageSchemaVersion}/
 orcid.authorizeUrl=https://orcid.org/oauth/authorize
@@ -33,7 +45,7 @@ orcid.clientId=xxxxxxxxxxxxxxxxxxx
 orcid.clientSecret=xxxxxxxxxxxxxxxxxxx
 
 orcid.frontendUrl=https://sandbox.orcid.org/
-orcid.messageSchemaVersion=1.2
+orcid.messageSchemaVersion=2.0
 orcid.apiUrl=https://api.sandbox.orcid.org/v${orcid.messageSchemaVersion}/
 orcid.pubApiUrl=https://pub.sandbox.orcid.org/v${orcid.messageSchemaVersion}/
 orcid.authorizeUrl=https://sandbox.orcid.org/oauth/authorize
@@ -60,43 +72,3 @@ startup.bat
 7. Try the web application
 
 Open your browser, and navigate to http://localhost:8088, and follow the instructions.
-
-##############################################
-Obsolete Readme as below
-##############################################
-------------------------------------
-Prerequisite:
-
-You need to have a Facebook App. If not yet, create one at https://developers.facebook.com/quickstarts/?platform=web 
-Then you'll be given a Facebook ID with its secret. You should put them in the following configuration file:
-/src/main/webapp/WEB-INF/spring/social.properties
-
-Ensure that you provide Facebook the website URL:
-
-1. Go to https://developers.facebook.com/apps/
-2. Click your application to go to its Dashboard
-3. Click "Choose a Platform"
-4. Click "WWW" website
-5. Find the section "Tell us about your website" and enter "http://localhost:8088/" and then "Next"
-
-That's it. Now go to http://localhost:8088/<name-of-spring-social-example-app>/, it should work.
-
-------------------------------------
-Steps to run the application:
-
-1. Ensure you have Maven installed.
-2. Run 'mvn install'
-3. Run 'mvn jetty:run'
-4. Navigate to localhost:8088
-
-------------------------------------
-Other references:
-
-* Facebook scops:
-https://developers.facebook.com/docs/facebook-login/permissions/v2.5
-
-------------------------------------
-TODOs:
-
-1. As Facebook is blocked in some countries, we should use some other service providers in this application, for example, GitHub.
-2.  
