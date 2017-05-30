@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Spring Social ORCID REST WS Client</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+function testY() {
+	$.ajax({
+		   url: 'http://localhost:8088/spring-social-orcid-client-ws/api/orcid/profile',
+		   xhrFields: {
+		      withCredentials: true
+		   }
+		}).done(function(data) {
+			console.log("Result: ");
+			console.log(data);
+		})
+		.fail(function() {
+		  alert("Ajax failed to fetch data")
+		});
+}
+
+function testZ() {
+	$.ajax({
+		   url: 'http://localhost:8088/spring-social-orcid-client-ws/api/orcid/add/works',
+		   xhrFields: {
+		      withCredentials: true
+		   }
+		}).done(function(data) {
+			console.log("Result: ");
+			console.log(data);
+		})
+		.fail(function() {
+		  alert("Ajax failed to fetch data")
+		});
+}
+
+function receiveMessage(event)
+{
+  // Do we trust the sender of this message?  (might be
+  // different from what we originally opened, for example).
+  if (event.origin !== "http://localhost:8088") {
+	console.log("event.origin not allowed: " + event.origin);  
+	return;
+  }
+
+  console.log("event.origin: " + event.origin); 
+  $.ajax({
+	   url: 'http://localhost:8088/spring-social-orcid-client-ws/api/orcid/profile',
+	   xhrFields: {
+	      withCredentials: true
+	   }
+	}).done(function(data) {
+		console.log("Result: ");
+		console.log(data);
+		$('.divNotSigned').hide();
+		$('.divSigned').show();
+		$('.lblUserName').text(data.person.name.givenNames.value);
+	})
+	.fail(function() {
+	  alert("Ajax failed to fetch data")
+	});
+}
+
+window.addEventListener("message", receiveMessage, false);
+
+$(document).ready(function(){
+	$('.signInLink').click(function(e){
+        var windowName = $(this).attr('id');
+        url = "http://localhost:8088/spring-social-orcid-client-ws/login";
+        if ($('#rememberMeId').is(":checked")) {
+        	url += "?remember_me"
+        }
+        var popup = window.open(url, windowName, "height=900,width=800");
+    });
+});
+
+</script>
+</head>
+<body>
+	<table>
+		<tr style="background-color: olive;">
+			<td>Claiming</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="divNotSigned">
+					<table>
+						<tr>
+							<td>You can <a href="javascript:void(0)" class="signInLink">sign-in to ORCID</a> to claim your data</td>
+						</tr>
+						<tr>
+							<td><input id="rememberMeId" type="checkbox" class="rememberMe"> Remember	me on this computer</td>
+						</tr>
+					</table>
+				</div>
+				<div class="divSigned" style="display:none">
+					<table>
+						<tr>
+							<td>You have signed in as <label class="lblUserName" /></td>
+						</tr>
+						<tr>
+							<td>You can <a href="#" class="claimLink">claim 1cb3</a> into your ORCID.
+							</td>
+						</tr>
+						<tr>
+							<td><a href="#" class="logoutLink"><i>logout</i></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

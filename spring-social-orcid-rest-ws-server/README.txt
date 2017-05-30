@@ -1,0 +1,102 @@
+------------------------------------
+Prerequisite:
+
+1. Spring Social ORCID has not been hosted in the Central Maven Repository. 
+You need to download the Spring Social ORCID project from https://github.com/yucigou/spring-social-orcid
+And then generate the jar file and install it in your local Maven repository: mvn clean install
+
+2. You need to register an ORCID Application. If not yet, apply for one at:
+https://orcid.org/content/register-client-application-production-trusted-party, or
+https://orcid.org/content/register-client-application-sandbox
+
+Then you'll be given an ORCID application ID for your application together with its secret. 
+
+3. You need to put the application with its secret in the following Spring properties file:
+/src/main/webapp/WEB-INF/spring/social.properties
+
+Accordingly, you need to configure the ORCID API properties in the same file. Please find below the example
+social.properties file for ORCID Production API:
+
+orcid.clientId=xxxxxxxxxxxxxxxxxxx
+orcid.clientSecret=xxxxxxxxxxxxxxxxxxx
+
+orcid.frontendUrl=https://orcid.org/
+orcid.messageSchemaVersion=1.2
+orcid.apiUrl=https://api.orcid.org/v${orcid.messageSchemaVersion}/
+orcid.pubApiUrl=https://pub.orcid.org/v${orcid.messageSchemaVersion}/
+orcid.authorizeUrl=https://orcid.org/oauth/authorize
+orcid.accessTokenUrl=https://api.orcid.org/oauth/token
+
+Another example social.properties file for ORCID Sandbox API:
+
+orcid.clientId=xxxxxxxxxxxxxxxxxxx
+orcid.clientSecret=xxxxxxxxxxxxxxxxxxx
+
+orcid.frontendUrl=https://sandbox.orcid.org/
+orcid.messageSchemaVersion=1.2
+orcid.apiUrl=https://api.sandbox.orcid.org/v${orcid.messageSchemaVersion}/
+orcid.pubApiUrl=https://pub.sandbox.orcid.org/v${orcid.messageSchemaVersion}/
+orcid.authorizeUrl=https://sandbox.orcid.org/oauth/authorize
+orcid.accessTokenUrl=https://api.sandbox.orcid.org/oauth/token
+
+------------------------------------
+4. Set up your project in your IDE, such as Eclipse. (Optional)
+
+mvn eclipse:eclipse
+
+------------------------------------
+5. Generate the war file, i.e., spring-social-orcid-client-1.0.0.war for example
+
+mvn clean install
+
+------------------------------------
+6. Run the web application in Tomcat
+
+You can copy the war file to diretory <TOMCAT_HOME>/webapps/, and start Tomcat:
+cd <TOMCAT_HOME>/bin
+startup.bat
+
+------------------------------------
+7. Try the web application
+
+Open your browser, and navigate to http://localhost:8088, and follow the instructions.
+
+##############################################
+Obsolete Readme as below
+##############################################
+------------------------------------
+Prerequisite:
+
+You need to have a Facebook App. If not yet, create one at https://developers.facebook.com/quickstarts/?platform=web 
+Then you'll be given a Facebook ID with its secret. You should put them in the following configuration file:
+/src/main/webapp/WEB-INF/spring/social.properties
+
+Ensure that you provide Facebook the website URL:
+
+1. Go to https://developers.facebook.com/apps/
+2. Click your application to go to its Dashboard
+3. Click "Choose a Platform"
+4. Click "WWW" website
+5. Find the section "Tell us about your website" and enter "http://localhost:8088/" and then "Next"
+
+That's it. Now go to http://localhost:8088/<name-of-spring-social-example-app>/, it should work.
+
+------------------------------------
+Steps to run the application:
+
+1. Ensure you have Maven installed.
+2. Run 'mvn install'
+3. Run 'mvn jetty:run'
+4. Navigate to localhost:8088
+
+------------------------------------
+Other references:
+
+* Facebook scops:
+https://developers.facebook.com/docs/facebook-login/permissions/v2.5
+
+------------------------------------
+TODOs:
+
+1. As Facebook is blocked in some countries, we should use some other service providers in this application, for example, GitHub.
+2.  
