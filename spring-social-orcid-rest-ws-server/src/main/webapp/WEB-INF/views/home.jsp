@@ -12,10 +12,10 @@
 
 	<form id="target" action="<c:url value="/signin/orcid" />" method="POST" style="display:none">
 		<button type="submit">Sign in with ORCID</button>
-		<input type="hidden" name="scope" id="orcid_scope" value="/read-limited /orcid-works/create" />
+		<input type="hidden" name="scope" id="orcid_scope" value="/read-limited /activities/update" />
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" name="show_login" value="true" /> 
-		<input type="checkbox" name="additional_permission" value="/read-limited /orcid-works/create" checked> Allow for (1) Reading Entire Record and (2) Adding a Research Activity
+		<input type="checkbox" name="additional_permission" value="/read-limited /activities/update" checked> Allow for (1) Reading Entire Record and (2) Adding a Research Activity
 		<div id="RememberMeSection"><input type="checkbox" name="remember-me" id="orcidRememberMeId" value="true"/> Remember Me</div>
 	</form>
 	
